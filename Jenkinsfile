@@ -13,10 +13,11 @@ pipeline {
       }
     }
 
-    stage('docker build & push') {
+    stage('docker build image on build server and push to dockerhub') {
       agent any
       steps {
         script {
+          echo "on build server, only have image and only need to rm image"
           def REMOVE_FLAG = sh(returnStdout: true, script: "docker image ls -q *liker163/eureka-testver*") != ""
           echo "REMOVE_FLAG: ${REMOVE_FLAG}"
           if(REMOVE_FLAG){
@@ -32,7 +33,7 @@ pipeline {
       }
     }
 
-    stage('docker pull image and docker run image') {
+    stage('docker pull image from dockerhub and run on deploy server') {
       agent any
       steps {
         script {
