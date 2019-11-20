@@ -37,9 +37,11 @@ pipeline {
       agent any
       steps {
         script {
+          // def REMOVE_FLAG = sh(returnStdout: true, script: "docker container ls -q --filter name=eurekacontain") != ""
           def REMOVE_FLAG = sh(returnStdout: true, script: "docker container ls -a -q --filter name=eurekacontain") != ""
           echo "REMOVE_FLAG: ${REMOVE_FLAG}"
           if(REMOVE_FLAG){
+            // sh 'docker container rm -f $(docker container ls -q --filter name=eurekacontain)'
             sh 'docker container rm -f $(docker container ls -a -q --filter name=eurekacontain)'
           }
         }
