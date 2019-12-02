@@ -9,7 +9,8 @@ import org.springframework.cloud.netflix.eureka.server.EnableEurekaServer;
 public class EurekaApplication {
 
 	public static void main(String[] args) {
-		System.out.println( "Hello World ! EurekaApplication! test two" );
+		// test jenkins CICD need to remove container which already on remote server
+		System.out.println( "Hello World ! EurekaApplication!" );
 		SpringApplication.run(EurekaApplication.class, args);
 	}
 
